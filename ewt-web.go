@@ -1,8 +1,11 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
-	"net/http"
+	"os"
+
+	"github.com/nyudlts/ewt-web/lib/router"
 
 	"github.com/gin-gonic/gin"
 )
@@ -11,16 +14,20 @@ func main() {
 	// Create a Gin router with default middleware (logger and recovery)
 	r := gin.Default()
 
-	// Define a simple GET endpoint
-	r.GET("/", func(c *gin.Context) {
-		// Return JSON response
-		c.JSON(http.StatusOK, gin.H{
-			"message": "welcome to ewt-web",
-		})
-	})
+	// Load configuration from JSON file
+	config := router.EWTConfig{}
+	configLoc := "ewt-web-config.json"
+	configBytes, err := os.ReadFile(configLoc)
+	if err != nil {
+		log.Fatalf("failed to read config file: %v", err)
+	}
+	if err := json.Unmarshal(configBytes, &config); err != nil {
+		log.Fatalf("failed to unmarshal config: %v", err)
+	}
 
-	// Start server on port 8080 (default)
-	// Server will listen on 0.0.0.0:8080 (localhost:8080 on Windows)
+	//initialize the router
+	router.InitRouter(r, &config)
+
 	if err := r.Run(); err != nil {
 		log.Fatalf("failed to run server: %v", err)
 	}
