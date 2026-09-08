@@ -6,7 +6,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/nyudlts/ewt-web/controllers"
-	api_v0 "github.com/nyudlts/ewt-web/lib/api/v0"
 )
 
 type EWTConfig struct {
@@ -23,9 +22,26 @@ func InitRouter(engine *gin.Engine, config *EWTConfig) {
 	addAPIRoutes(engine, config)
 }
 
-func addAPIRoutes(engine *gin.Engine, ewtRoot *EWTConfig) {
-	engine.GET("/", func(c *gin.Context) {
-		indexResponse := api_v0.IndexHandler(c, ewtRoot.EWTHome)
-		controllers.GetIndex(c, indexResponse)
+func addAPIRoutes(engine *gin.Engine, ewtConfig *EWTConfig) {
+	//Index
+	engine.GET("/", func(c *gin.Context) { controllers.GetIndex(c, ewtConfig.EWTHome) })
+
+	//Projects
+	projectRoutes := engine.Group("projects")
+	projectRoutes.GET(":id/show", func(c *gin.Context) {
+		projectName := c.Param("id")
+		controllers.ShowProject(c, ewtConfig.EWTHome, projectName)
 	})
+
+	projectRoutes.GET(":id/logs", func(c *gin.Context) {
+		projectName := c.Param("id")
+		controllers.GetProjectLogs(c, ewtConfig.EWTHome, projectName)
+	})
+
+	projectRoutes.GET(":id/logs/:log", func(c *gin.Context) {
+		projectName := c.Param("id")
+		logFileName := c.Param("log")
+		controllers.ShowProjectLog(c, ewtConfig.EWTHome, projectName, logFileName)
+	})
+
 }

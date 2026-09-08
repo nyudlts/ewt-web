@@ -1,0 +1,11 @@
+<html>
+  <body>
+    <h1>{{ .projectName }}</h1>
+    <h2>Project Logs</h2>
+    <ul>
+      {{ range $log := .logs }}
+        <li><a href="/projects/{{ $.projectName }}/logs/{{ $log }}">{{ $log }}</a></li>
+      {{ end }}
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <h1>{{ .project.CollectionCode }}</h1>
+    <h2>Project Configuration</h2>
+    <p>SIP Location: {{ .project.SIPLoc }}</p>
+    <p>Source Location: {{ .project.SourceLoc }}</p>
+    <p>Partner Code: {{ .project.PartnerCode }}</p>
+    <p>Collection Code: {{ .project.CollectionCode }}</p>
+    <p>Project Location: {{ .project.ProjectLoc }}</p>
+    <p>Log Location: {{ .project.LogLoc }}</p>
+    <p>AIP Location: {{ .project.AIPLoc }}</p>
+    <p>Archivematica Transfer Source: {{ .project.AMTransferSource }}</p>
+    <p>Transfer Location: {{ .project.XferLoc }}</p>
+    <p>AIP Store Location: {{ .project.AIPStoreLoc }}</p>
+    <p>Work Location: {{ .project.WorkLoc }}</p>
+    <a href="/projects/{{ .project.CollectionCode }}/logs">View Logs</a>
+  </body>
+</html>

@@ -6,6 +6,10 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var (
+	restricedDirectories = []string{"completed", "home", "lost", "quarantine", "templates", "test"}
+)
+
 func IndexHandler(c *gin.Context, ewtHome string) IndexResponse {
 
 	//get a listing of directories in the ewtHome path
@@ -18,7 +22,16 @@ func IndexHandler(c *gin.Context, ewtHome string) IndexResponse {
 	dirNames := []string{}
 	for _, dir := range dirs {
 		if dir.IsDir() {
-			dirNames = append(dirNames, dir.Name())
+			skip := false
+			for _, restricted := range restricedDirectories {
+				if dir.Name() == restricted {
+					skip = true
+					break
+				}
+			}
+			if !skip {
+				dirNames = append(dirNames, dir.Name())
+			}
 		}
 	}
 

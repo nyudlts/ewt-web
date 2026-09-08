@@ -2,8 +2,11 @@
   <body>
     <p>{{ .title }}</p>
     <p>ewt home: {{ .data.EwtHome }}</p>
+    <h4>Current Projects</h4>
     {{ range $projectDirectory := .data.Directories }}
-      <p>{{ $projectDirectory }}</p>
+      <ul>
+        <li><a href="/projects/{{ $projectDirectory }}/show">{{ $projectDirectory  }}</a></li>
+      </ul>
     {{ end }}
   </body>
 </html>
