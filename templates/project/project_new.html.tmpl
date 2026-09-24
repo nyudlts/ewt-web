@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <h1>New Project</h1>
+    <p>EWT Root: {{ .ewtRoot }}</p>
+    <form action="/projects" method="POST">
+      <label for="projectName">Project Name:</label>
+      <input type="text" id="project_name" name="project_name" required>
+      <label for="sourcePath">Source Path:</label>
+      <input type="text" id="source_path" name="source_path" required>
+      <button type="submit">Create Project</button>
+    </form>
+  </body>
+</html>

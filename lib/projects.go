@@ -1,4 +1,4 @@
-package api_v0
+package lib
 
 import (
 	"encoding/json"
@@ -7,6 +7,33 @@ import (
 
 	"github.com/gin-gonic/gin"
 )
+
+var (
+	restricedDirectories = []string{"completed", "home", "lost", "quarantine", "templates", "test", "jobs"}
+)
+
+func GetProjects(ewtRoot string) []string {
+	dirs, err := os.ReadDir(ewtRoot)
+	if err != nil {
+		return nil
+	}
+	var projectDirs []string
+	for _, dir := range dirs {
+		if dir.IsDir() {
+			skip := false
+			for _, restricted := range restricedDirectories {
+				if dir.Name() == restricted {
+					skip = true
+					break
+				}
+			}
+			if !skip {
+				projectDirs = append(projectDirs, dir.Name())
+			}
+		}
+	}
+	return projectDirs
+}
 
 func ShowProjectHandler(c *gin.Context, ewtRoot string, projectName string) (*ProjectConfig, error) {
 	configPath := filepath.Join(ewtRoot, projectName, "config.json")

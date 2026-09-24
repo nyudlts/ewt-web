@@ -14,5 +14,11 @@
     <p>AIP Store Location: {{ .project.AIPStoreLoc }}</p>
     <p>Work Location: {{ .project.WorkLoc }}</p>
     <a href="/projects/{{ .project.CollectionCode }}/logs">View Logs</a>
+    <h2>Jobs<h2>
+    <ul>
+      <li><a href="/projects/{{ .project.CollectionCode }}/jobs/project">project</a></li>
+      <li><a href="/projects/{{ .project.CollectionCode }}/jobs/sip">sip</a></li>
+      <li><a href="/projects/{{ .project.CollectionCode }}/jobs/source">source</a></li>
+    </ul>
   </body>
 </html>

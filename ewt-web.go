@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/nyudlts/ewt-web/lib/router"
+	"github.com/nyudlts/ewt-web/router"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,4 +1,4 @@
-package api_v0
+package lib
 
 type IndexResponse struct {
 	Message     string   `json:"message"`

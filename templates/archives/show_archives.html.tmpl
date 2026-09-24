@@ -1,0 +1,10 @@
+<html>
+  <body>
+    <h4>Archives</h4>
+    <ul>
+{{ range $key, $value := .archives }}
+   <li><a href="/archives/{{ $key }}">{{ $key }}</a>: {{ $value }}</li>
+{{ end }}
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+<html>
+  <body>
+    <h1>Jobs for Project: {{ .projectName }}</h1>
+    <ul>
+      {{ range $job := .jobs }}
+        <li><a href="/projects/{{ $.projectName }}/jobs/{{ $job }}">{{ $job }}</a></li>
+      {{ end }}
+    </ul>
+  </body>
+</html>
