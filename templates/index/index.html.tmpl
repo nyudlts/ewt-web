@@ -1,5 +1,4 @@
-<html>
-  <body>
+{{ template "header.html.tmpl" .}}
     <p>{{ .title }}</p>
     <p>ewt home: {{ .data.EwtHome }}</p>
     <h4>Current Projects</h4>
@@ -10,5 +9,4 @@
     {{ end }}
     <a href="/projects/new">Create New Project</a>
     <a href="/archives">View Archives</a>
-  </body>
-</html>
+{{ template "footer.html.tmpl" .}}

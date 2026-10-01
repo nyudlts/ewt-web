@@ -21,6 +21,9 @@ func InitRouter(engine *gin.Engine, config *EWTConfig) {
 	}
 	templatesPath := filepath.Join(wd, "templates/**/*.tmpl")
 	engine.LoadHTMLGlob(templatesPath)
+	engine.StaticFile("/favicon.ico", "./public/favicon.ico")
+	engine.Static("/public", "./public")
+	engine.SetTrustedProxies([]string{"127.0.0.1"})
 	addRoutes(engine, config)
 }
 

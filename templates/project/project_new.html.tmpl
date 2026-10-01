@@ -1,5 +1,4 @@
-<html>
-  <body>
+{{ template "header.html.tmpl" .}}
     <h1>New Project</h1>
     <p>EWT Root: {{ .ewtRoot }}</p>
     <form action="/projects" method="POST">
@@ -9,5 +8,4 @@
       <input type="text" id="source_path" name="source_path" required>
       <button type="submit">Create Project</button>
     </form>
-  </body>
-</html>
+{{ template "footer.html.tmpl" .}}
