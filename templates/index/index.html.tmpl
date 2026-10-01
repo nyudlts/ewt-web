@@ -1,12 +1,11 @@
 {{ template "header.html.tmpl" .}}
-    <p>{{ .title }}</p>
-    <p>ewt home: {{ .data.EwtHome }}</p>
-    <h4>Current Projects</h4>
-    {{ range $projectDirectory := .data.Directories }}
-      <ul>
-        <li><a href="/projects/{{ $projectDirectory }}/show">{{ $projectDirectory  }}</a></li>
-      </ul>
-    {{ end }}
-    <a href="/projects/new">Create New Project</a>
-    <a href="/archives">View Archives</a>
-{{ template "footer.html.tmpl" .}}
+
+<div class="p-5 mb-4 bg-light rounded-3 text-center">
+  <div class="container-fluid py-5">
+    <h1 class="display-5 fw-bold">{{ .title }}</h1>
+    <a href="/projects" class="btn btn-primary btn-lg" type="button">Projects</a>
+    <a href="/archives" class="btn btn-primary btn-lg" role="button">Archives</a>
+    <a href="/jobs" class="btn btn-primary btn-lg" role="button">Jobs</a>
+  </div>
+</div>
+{{ template "footer.html.tmpl" .}}  
