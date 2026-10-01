@@ -33,7 +33,7 @@ func addRoutes(engine *gin.Engine, ewtConfig *EWTConfig) {
 		indexResponse := api_v0.IndexHandler(c, ewtConfig.EWTHome)
 
 		c.HTML(200, "index.html.tmpl", gin.H{
-			"title": "Welcome to ewt-web",
+			"title": "ewt-web",
 			"data":  indexResponse,
 		})
 	})
